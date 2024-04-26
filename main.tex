@@ -8,23 +8,79 @@
 	We employ the following notations.
 	\begin{itemize}
 		\item %
-			Sets are regarded as discrete categories.
+			Sets are regarded as discrete categories,
+			and categories are regarded as locally discrete 2-categories.
 		\item %
-			We write $\CATbi$
+			$\Set$ is the large category of small sets.
+		\item %
+			We write $\CATbi$ for the huge 2-category of large categories.
 		\item %
 			For each set $S$ and a functor $X\colon S\arr\Set$,
 			we write $X_s$ for the image of $s\in S$ under $X$.
 			Moreover, we write $(X_s)_{s\tcolon S}$ for $X$.
+		\item %
+			For each set $S$ and functors $X,Y\colon S\arr \Set$,
+			a natural transformation $f\colon X \arr[Rightarrow]Y$ is denoted as a family of functions
+			$(f_s)_{s\tcolon S}$.
 	\end{itemize}
 \end{notation}
+\section{polynomials}
 \begin{definition}
-	We define a category $\Poly$ as the Grothendieck construction of the following pseudo functor.
+	We define a category $\Poly$ as the Grothendieck construction of the following 2-functor.
 	\[
-		\Set
+		\Set^\op
 		\arr"\left[-,\Set\right]^\op"[][5]
 		\CATbi
 	\]
 	A \emph{polynomial} is an object in $\Poly$.
+	We write
+	\[
+		(-)_\ob\colon\Poly\arr\Set
+	\]
+	for the fibration corresponding to the 2-functor.
+	For each polynomial $A$,
+	we write $A=\sum_{a\tcolon A_\ob}y^{A_a}$.
+\end{definition}
+\begin{definition}
+	Define a functor $-\trleft-\colon\Poly\times\Poly\arr\Poly$ as follows.
+	\begin{itemize}
+		\item %
+			Let $A,B$ be polynomials.
+			\[
+				(A\trleft B)_\ob
+				=\sum_{a\tcolon A_\ob}\left[A_a,B_\ob\right]
+			\]
+			\[
+				(A\trleft B)_{a,t}
+				=\sum_{u\tcolon A_a} B_{t(u)}
+			\]
+		for any
+		$a\tcolon A_\ob$ and $t\colon A_a\arr B_\ob$.
+		\item %
+			Let $F\colon A\arr X$, $G\colon B\arr Y$ be morphisms in $\Poly$.
+			\[
+				(F\trleft G)_\ob
+				\colon
+				\sum_{a\tcolon A_\ob}\left[A_a,B_\ob\right]
+				\arr
+				\sum_{x\tcolon X_\ob}\left[X_x,Y_\ob\right]
+				\colon
+				(a,t)\mapsto\left(F_\ob(a),F_{a}\fatsemi t\fatsemi G_{\ob}\right)
+			\]
+			\[
+				(F\trleft G)_{a,t}\colon
+				\sum_{v\tcolon X_{F_\ob(a)}}Y_{G_\ob(t(F_{a}(v)))}
+				\arr
+				\sum_{u\tcolon A_{a}}B_{t(u)}
+				\colon
+				(v,r)
+				\mapsto
+				(F_a(v),G_{t(F_a(v))}(r))
+			\]
+		\qedhere %
+	\end{itemize}
+\end{definition}
+\begin{definition}
 \end{definition}
 
 \bibliographystyle{halpha-abbrv}
