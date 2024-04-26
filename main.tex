@@ -5,12 +5,22 @@
 \begin{document}
 \maketitle
 \begin{notation}
-	We employ
+	We employ the following notations.
 	\begin{itemize}
 		\item %
+			For each set $S$ and a family of sets $X\colon S\arr\Set$,
+			we write $X_s$ for the image of $s\in S$ under $X$.
+			Moreover, we write $(X_s)_{s\tcolon S}$ for $X$.
 	\end{itemize}
 \end{notation}
 \begin{definition}
+	We define a category $\Poly$ as the Grothendieck construction of the following pseudo functor.
+	\[
+		\Set
+		\arr"\left[-,\Set\right]^\op"[][5]
+		\CATbi
+	\]
+	A \emph{polynomial} is an object in $\Poly$.
 \end{definition}
 
 \bibliographystyle{halpha-abbrv}
