@@ -1,3 +1,4 @@
+*.vim
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -26,8 +27,8 @@
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
-*.bcf
-*.blg
+*.bcf*
+*.blg*
 *-blx.aux
 *-blx.bib
 *.run.xml
