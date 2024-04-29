@@ -28,7 +28,7 @@
 \end{notation}
 \section{polynomials}
 \begin{definition}
-	We define a category $\Poly$ as the Grothendieck construction of the following 2-functor.
+	We define a category $\Poly$ by the Grothendieck construction of the following 2-functor.
 	\[
 		\Set^\op
 		\arr"\left[-,\Set\right]^\op"[][5]
@@ -47,141 +47,186 @@
 	$(y)_0=1$ and $(y)_*=1$.
 \end{definition}
 \begin{definition}
-	Define a functor $-\trleft-\colon\Poly\times\Poly\arr\Poly$ as follows.
-	\begin{itemize}
-		\item %
-			Let $A,B$ be polynomials.
-			\[
-				(A\trleft B)_\ob
-				=\sum_{a\tcolon A_\ob}\left[A_a,B_\ob\right]
-			\]
-			\[
-				(A\trleft B)_{a,t}
-				=\sum_{u\tcolon A_a} B_{t(u)}
-			\]
-		for any
-		$a\tcolon A_\ob$ and $t\colon A_a\arr B_\ob$.
-		\item %
-			Let $F\colon A\arr X$, $G\colon B\arr Y$ be morphisms in $\Poly$.
-			\[
-				(F\trleft G)_\ob
-				\colon
-				\sum_{a\tcolon A_\ob}\left[A_a,B_\ob\right]
-				\arr
-				\sum_{x\tcolon X_\ob}\left[X_x,Y_\ob\right]
-				\colon
-				(a,t)\mapsto\left(F_\ob(a),F_{a}\fatsemi t\fatsemi G_{\ob}\right)
-			\]
-			\[
-				(F\trleft G)_{a,t}\colon
-				\sum_{v\tcolon X_{F_\ob(a)}}Y_{G_\ob(t(F_{a}(v)))}
-				\arr
-				\sum_{u\tcolon A_{a}}B_{t(u)}
-				\colon
-				(v,r)
-				\mapsto
-				(F_a(v),G_{t(F_a(v))}(r))
-			\]
-		\qedhere %
-	\end{itemize}
+	We define a category $\Fam$ by the Grothendieck construction of the following 2-functor.
+	\[
+		\Set^\op
+		\arr"\left[-,\Set\right]"[][5]
+		\CATbi
+	\]
+	Note that the fibration $\Poly\arr\Set$ is the fibrewise opposit of $\Fam\arr\Set$.
 \end{definition}
-\begin{proposition}
-	For each polynomial $A$,
-	there are natural isomorphisms
-	$y\trleft A\cong A$
-	and
-	$A\trleft y\cong A$ in $\Poly$.
-\end{proposition}
-\begin{proposition}
-	\label{prop:EmbInducesMoncat}
-	Let $\one{V}$ be a category and $\one{W}=(\one{W},\otimes',I')$ be a monoidal category.
-	Consider a functor $\otimes\colon\one{V}\times\one{V}\arr\one{V}$ and an object $I\in\one{V}$.
-	Suppose that we are given a functor $F\colon\one{V}\arr\one{W}$
-	such that there are a family of isomorphisms $F(A\otimes B)\cong F(A)\otimes F(B)$ natural in $A,B\in\one{V}$
-	and an isomorphism $F(I)\cong I$.
-	If $F$ induces a fully faithful functor on the core groupoids,
-	then $(\one{V},\otimes,I)$ becomes a monoidal category and $F$ is a pseudo monoidal functor.
-\end{proposition}
 \begin{definition}
-	Define
-	$\Set\arr[hook]\Poly$
-	as a functor induced
-	from the 2-natural transformation
-	$\Delta(\one{1})\arr[Rightarrow]\left[-,\Set\right]^\op$
-	whose component at $S\in\Set^\op$ is the name for the terminal object in $\left[S,\Set\right]^\op$.
-	In other words, the fibration $\Poly\arr"{(-)_\ob}"\Set$ has the fibred terminal.
-	This functor is automatically fully faithful, and we regard sets as polynomials through this functor.
-\end{definition}
-\begin{lemma}
-	\label{lem:trleftRestSets}
-	$\Poly\times\Poly\arr"\trleft"\Poly$
-	restricts to a functor
-	$\Poly\times\Set\arr"\trleft"\Set$.
-\end{lemma}
-\begin{proof}
-\end{proof}
-\begin{definition}
-	Define a functor $\rep\colon\Poly\arr\left[\Set,\Set\right]$
-	as the currying of the functor $\Poly\times\Set\arr"\trleft"\Set$ obtained in \Cref{lem:trleftRestSets}.
+	Consider the composite
+	\[
+		\begin{tikzcd}[row sep=5mm]
+			\left[S,\Set\right]^\op\times\Set
+			\ar[rr,"{\langle\id_{[S,\Set]},\Delta\circ\proj\rangle}"]
+				&\ &
+				\left[S,\Set\right]^\op\times\left[S,\Set\right]
+				\ar[r]
+					&
+					\left[S,\Set\right]
+			\\
+			((A_s)_{s\tcolon S}, T)
+			\ar[rrr,mapsto]
+			\ar[u,"\in"marking,phantom]
+				&\ &
+					&
+					(\left[A_s,T\right])_{s\tcolon S}
+					\ar[u,"\in"marking,phantom]
+		\end{tikzcd}
+	\]
+	where $\Delta\colon\Set\arr\left[S,\Set\right]$ in the former is the diagonal and
+	the latter is the internal hom for $[S,Set]$.
+	This is natural in $S\in\Set^\op$ and induces a functor
+	$\Poly\times\Set\arr\Fam$.
+	We write $\rep\colon\Poly\arr\left[\Set,\Set\right]$ for the currying of the composite
+	\[
+		\begin{tikzcd}[row sep=5mm]
+			\Poly\times\Set
+			\ar[r]
+				&
+				\Fam
+				\ar[r,"\Sigma"]
+					&
+					\Set
+			\\
+			(A,S)
+			\ar[rr,mapsto]
+			\ar[u,"\in"marking,phantom]
+				&
+					&
+					\sum_{a\tcolon A_\ob}\left[A_p,S\right]
+					\ar[u,"\in"marking,phantom]
+		\end{tikzcd}
+	\]
+	where $\sum$ is the coproduct (i.e., the left adjoint of the fibred terminal $\Set\arr\Fam$).
 \end{definition}
 \begin{proposition}
-	\label{prop:repIsEmb}
-	$\rep$ induces a fully faithful functor on the core groupoids.
+	\label{prop:repIsFF}
+	$\rep$ is fully faithful.
 \end{proposition}
 \begin{proof}
 	Suppose we are given
 	$P,Q\in\Poly$,
-	an isomorphism $\alpha\colon\rep(P)\cong\rep(Q)$ in $\left[\Set,\Set\right]$,
+	a morphism $\alpha\colon\rep(P)\arr\rep(Q)$ in $\left[\Set,\Set\right]$,
 	and
 	$S\in\Set$.
-	We have the following commutative diagram:
+	We have the following commutative square:
 	\[
 		\begin{tikzcd}
 			\sum_{p\in P_\ob}[P_p,S]
-			\ar[r,"\cong"description,phantom]
-			\ar[d,""]
+			\ar[r,"\alpha_S"]
+			\ar[d,"\rep(P)(!_S)"']
 				&
-				P\trleft S
-				\ar[r,"\alpha_S",weq']
-				\ar[d,"P\trleft!_S"']
-					&
-					Q\trleft S
-					\ar[d,"Q\trleft!_S"]
-					\ar[r,"\cong"description,phantom]
-						&
-						\sum_{q\in Q_\ob}[Q_q,S]
-						\ar[d,""]
+				\sum_{q\in Q_\ob}[Q_q,S]
+				\ar[d,"\rep(Q)(!_S)"]
 			\\
 			P_\ob
-			\ar[r,"\cong"description,phantom]
+			\ar[r,"\alpha_1"']
 				&
-				P\trleft 1
-				\ar[r,"\alpha_1"',weq]
-					&
-					Q\trleft 1
-					\ar[r,"\cong"description,phantom]
-						&
-						Q_\ob
+				Q_\ob
 		\end{tikzcd}
 	\]
-	where the left and the right vertical arrows are projections. Therefore, we have $\left[P_p,S\right]\cong\left[Q_{\alpha_1(p)},S\right]$
-	for each $p\in P_\ob$ and $S\in\Set$.
-	By applying the yoneda lemma, we obtain $Q_{\alpha_1(p)}\cong P_p$ for each $p\in P_\ob$, which induces an isomophism $\bar\alpha\colon P\cong Q$ in $\Poly$.
-	One can readily check that $\bar\alpha$ is a unique isomorphism satisfying $\rep(\bar\alpha)=\alpha$.
+	where the left and the right vertical arrows are projections. Therefore, we have a family of morphisms
+	$\left[P_p,S\right]\arr\left[Q_{\alpha_1(p)},S\right]$
+	natural in $p\in P_\ob$ and $S\in\Set$.
+	By applying the yoneda lemma, we obtain $Q_{\alpha_1(p)}\arr P_p$ for each $p\in P_\ob$, which induces a morphism $\bar\alpha\colon P\arr Q$ in $\Poly$.
+	One can readily check that $\bar\alpha$ is a unique morphism satisfying $\rep(\bar\alpha)=\alpha$.
 \end{proof}
 \begin{lemma}
-	\label{lem:PolyMonoidalCaty}
-	There is a family of isomorphisms
-	$\rep(P\trleft Q)\cong\rep(P)\circ\rep(Q)$ natural in $P,Q\in\Poly$.
-	Moreover, we have $\rep(y)\cong\id_\Set$ in $\left[\Set,\Set\right]$.
+	\label{lem:repClosedunderMonStr}
+	(The essential image of) $\rep$ is closed under the monoidal structure $(\circ,\id_\Set)$ on $[\Set,\Set]$.
 \end{lemma}
+\begin{proof}
+	$\rep(y)\cong\id_\Set$ is trivial. It suffices to show $\rep$ is closed under $\circ$.
+	Let $A,B$ be polynomials. Let us define another polynomial $A\trleft B$ as follows.
+	\[
+		(A\trleft B)_\ob
+		=\sum_{a\tcolon A_\ob}\left[A_a,B_\ob\right]
+	\]
+	\[
+		(A\trleft B)_{a,t}
+		=\sum_{u\tcolon A_a} B_{t(u)}
+	\]
+	for any
+	$a\tcolon A_\ob$ and $t\colon A_a\arr B_\ob$.
+	Then, observe the following bijections.
+	\begin{align*}
+		\rep(A\trleft B)(S)
+		&
+		\cong
+		\sum_{a\tcolon A_\ob}\sum_{t\tcolon\left[A_a,B_\ob\right]}\left[\sum_{u\tcolon A_a}B_{t(u)},S\right]
+		\\
+		&
+		\cong
+		\sum_{a\tcolon A_\ob}\sum_{t\tcolon\left[A_a,B_\ob\right]}\prod_{u\tcolon A_a}\left[B_{t(u)},S\right]
+		\\
+		&
+		\cong
+		\sum_{a\tcolon A_\ob}\prod_{u\tcolon A_a}\sum_{b\tcolon B_\ob}\left[B_{b},S\right]
+		\\
+		&
+		\cong
+		\sum_{a\tcolon A_\ob}\left[A_a,\sum_{b\tcolon B_\ob}\left[B_{b},S\right]\right]
+		\\
+		&
+		=
+		\rep(A)(\rep(B)(S))
+	\end{align*}
+	The third bijection is the distributive law.
+	Since these are natural in $S\in\Set$ this shows that $\rep(A\trleft B)\cong\rep(A)\circ\rep(B)$.
+\end{proof}
+\begin{proposition}
+	\label{prop:FFInducesMoncat}
+	Let $\one{V}$ be a category and $\one{W}$ be a monoidal category.
+	Suppose there is a fully faithful functor $F\colon\one{V}\arr[hook]\one{W}$
+	that is closed under the monoidal structure on $\one{W}$.
+	Then there exists a monoidal structure on $\one{V}$ that makes $F$ strong monoidal,
+	which is unique up to isomorphisms.
+\end{proposition}
+\begin{proof}
+	\comment{folklore}
+\end{proof}
+\begin{remark}
+	The functor $-\trleft-\colon\Poly\times\Poly\arr\Poly$ acts on morphisms as follows.
+	Let $F\colon A\arr X$, $G\colon B\arr Y$ be morphisms in $\Poly$.
+	\[
+		(F\trleft G)_\ob
+		\colon
+		\sum_{a\tcolon A_\ob}\left[A_a,B_\ob\right]
+		\arr
+		\sum_{x\tcolon X_\ob}\left[X_x,Y_\ob\right]
+		\colon
+		(a,t)\mapsto\left(F_\ob(a),F_{a}\fatsemi t\fatsemi G_{\ob}\right)
+	\]
+	\[
+		(F\trleft G)_{a,t}\colon
+		\sum_{v\tcolon X_{F_\ob(a)}}Y_{G_\ob(t(F_{a}(v)))}
+		\arr
+		\sum_{u\tcolon A_{a}}B_{t(u)}
+		\colon
+		(v,r)
+		\mapsto
+		(F_a(v),G_{t(F_a(v))}(r))
+	\]
+\end{remark}
+\begin{lemma}
+	\label{lem:trleftRestSets}
+	$\Poly\times\Poly\arr"\trleft"\Poly$
+	restricts to a functor
+	$\Poly\times\Set\arr"\trleft"\Set$
+	and coincide with $\rep(-)(-)$.
+\end{lemma}
+\begin{proof}
+\end{proof}
 \begin{proposition}
 	\label{prop:PolyMonoidalCaty}
 	$(\Poly,\trleft,y)$ is a monoidal category
 	such that $\rep\colon\Poly\arr\left(\left[\Set,\Set\right],\circ,\id_\Set\right)$ is a pseudo monoidal functor.
 \end{proposition}
 \begin{proof}
-	Follows from \Cref{lem:PolyMonoidalCaty,prop:repIsEmb,prop:EmbInducesMoncat}.
+	Follows from \Cref{lem:repClosedunderMonStr,prop:repIsFF,prop:FFInducesMoncat}.
 \end{proof}
 
 \bibliographystyle{halpha-abbrv}
