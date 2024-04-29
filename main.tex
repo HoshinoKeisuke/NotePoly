@@ -1,4 +1,4 @@
-\documentclass[a4paper,dvipsnames, 11pt]{amsart}
+\documentclass[a4paper,dvipsnames, 11pt]{amsart} %pdf latex
 \usepackage{preamble}
 \usepackage{lipsum}
 
@@ -44,7 +44,7 @@
 	we write $A=\sum_{a\tcolon A_\ob}y^{A_a}$.
 
 	In particular, we mean by $y$ the polynomial satisfying
-	$(y)_0=1$ and $(y)_*=1$.
+	$(y)_\ob=1$ and $(y)_*=1$.
 \end{definition}
 \begin{definition}
 	We define a category $\Fam$ by the Grothendieck construction of the following 2-functor.
@@ -189,6 +189,14 @@
 	\comment{folklore}
 \end{proof}
 \begin{remark}
+\begin{proposition}
+	\label{prop:PolyMonoidalCaty}
+	$(\Poly,\trleft,y)$ is a monoidal category
+	such that $\rep\colon\Poly\arr\left(\left[\Set,\Set\right],\circ,\id_\Set\right)$ is a pseudo monoidal functor.
+\end{proposition}
+\begin{proof}
+	Follows from \Cref{lem:repClosedunderMonStr,prop:repIsFF,prop:FFInducesMoncat}.
+\end{proof}
 	The functor $-\trleft-\colon\Poly\times\Poly\arr\Poly$ acts on morphisms as follows.
 	Let $F\colon A\arr X$, $G\colon B\arr Y$ be morphisms in $\Poly$.
 	\[
@@ -216,18 +224,99 @@
 	$\Poly\times\Poly\arr"\trleft"\Poly$
 	restricts to a functor
 	$\Poly\times\Set\arr"\trleft"\Set$
-	and coincide with $\rep(-)(-)$.
+	and coincides with the uncurrying of $\rep$.
 \end{lemma}
 \begin{proof}
 \end{proof}
+
+\section{Double categories}
+By \emph{double categories}, we mean psuedo ones.
+\begin{definition}
+	A double category $\dbl{D}$ is a \emph{company} if
+	its tight arrows have companions.
+	$\dbl{D}$ is an \emph{opcompany} if $\dbl{D}^\hop$ is a company.
+	We say $\dbl{D}$ is an \emph{equipment} if $\dbl{D}$ and $\dbl{D}^\hop$ are companies.
+\end{definition}
+\begin{definition}
+	\comment{(It is defined for arbitrary bvdc whose underlying sdc is a opcompany.)}
+	Let $\dbl{D}$ be an opcompany.
+	Define another double category $\Ret(\dbl{D})$ as follows.
+	\begin{itemize}
+		\item %
+			The vertical category is the same as $\dbl{D}$.
+		\item %
+			A loose arrow is a loose arrow in $\dbl{D}$.
+		\item %
+			A cell
+			\[
+				\begin{tikzcd}
+					A
+					\sar[r,"p"]
+					\ar[d,"f"']
+						&
+						B
+						\ar[d,"g"]
+					\\
+					X
+					\sar[r,"q"']
+						&
+						Y
+				\cellsymb"\alpha"{1-1}{2-2}
+				\end{tikzcd}
+				\incat{\Ret(\dbl{D})}
+			\]
+			is a cell in $\dbl{D}$ of the following form.
+			\[
+				\begin{tikzcd}
+					X
+					\sar[r,"q"]
+					\ar[d,equal]
+						&
+						Y
+						\sar[r,"g^*"]
+							&
+							B
+							\ar[d,equal]
+					\\
+					X
+					\sar[r,"{f^*}"']
+						&
+						A
+						\sar[r,"p"']
+							&
+							B
+				\cellsymb"\alpha"{1-1}{2-3}
+				\end{tikzcd}
+			\]
+		\item %
+			\comment{horizontal composite}
+		\item %
+			\comment{vertical composite}
+		\qedhere %
+	\end{itemize}
+\end{definition}
 \begin{proposition}
-	\label{prop:PolyMonoidalCaty}
-	$(\Poly,\trleft,y)$ is a monoidal category
-	such that $\rep\colon\Poly\arr\left(\left[\Set,\Set\right],\circ,\id_\Set\right)$ is a pseudo monoidal functor.
+	\label{prop:replVDC}
+	The virtual double category of monoids in $\Ret(\dbl{D})^\vop$ is representable if $\dbl{D}$ has local reflexive coequalizers.
 \end{proposition}
-\begin{proof}
-	Follows from \Cref{lem:repClosedunderMonStr,prop:repIsFF,prop:FFInducesMoncat}.
-\end{proof}
+\begin{definition}
+	Let $\dbl{D}$ be a double category with local reflexive coequalizers.
+	\begin{itemize}
+		\item %
+			We write $\Mod(\dbl{D})$ for the double category corresponding to the representable virtual double category of monoids in $\Ret(\dbl{D})$.
+		\item %
+			We write $\Mod_{\co}(\dbl{D})$ for the vertical opposite of the double category corresponding to the representable virtual double category of monoids in $\Ret(\dbl{D})^\vop$
+			obtained in \Cref{prop:replVDC}.
+		\qedhere %
+	\end{itemize}
+\end{definition}
+\begin{lemma}
+	Let $\dbl{D}$ be a double category with local reflexive coequalizers.
+	There is an isomorphism $\bi{H}(\Mod_\co(\dbl{D}))\cong\bi{H}(\Mod(\dbl{D}))$.
+	\comment{Where?}
+\end{lemma}
+\begin{definition}
+\end{definition}
 
 \bibliographystyle{halpha-abbrv}
 \bibliography{bibliography}
