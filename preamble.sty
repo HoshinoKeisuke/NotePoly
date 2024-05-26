@@ -21,7 +21,8 @@ array,%
 pict2e,
 listings, % for listings
 }
-\RequirePackage[nolist,smaller]{acronym}
+\RequirePackage{acro}
+%\RequirePackage[nolist,smaller]{acronym}
 \RequirePackage[a4paper, margin=2cm]{%
 geometry%
 }
@@ -347,8 +348,18 @@ decorations.markings,% to define the key vslash
 }
 \newcommand{\incat}[1]{\hspace{1em}\text{in }{#1}}
 \newcommand{\tup}[1]{\vec{#1}}
+%----- acronyms (additional) -----------------------------------------------
+\DeclareAcronym{pRMC}{%
+    short = p\textsc{rmc},%
+    short-plural-form= p\textsc{rmc}s,%
+    long = pre-representable map category,
+    long-plural-form = pre-representable map categories,%
+    short-indefinite = a,%
+    long-indefinite = a,%
+}
 %----- abbreviations (additional) -----------------------------------------------
 \newcommand*{\Poly}{\one{Poly}}
+\newcommand*{\Polybi}{\bi{P}{oly}}
 \newcommand*{\Fam}{\one{Fam}}
 \newcommand*{\tcolon}{:}
 \newcommand*{\trleft}{\triangleleft}
