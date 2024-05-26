@@ -317,6 +317,38 @@ By \emph{double categories}, we mean psuedo ones.
 \end{lemma}
 \begin{definition}
 \end{definition}
+\section{Polynomial in a generalised context}
+\begin{definition}
+	Let $\one{C}$ be a category.
+	\begin{itemize}
+		\item %
+			A morphism $f\colon X\arr Y$ in $\one{C}$ is \emph{carrable} if
+			$\Sigma_f\colon\one{C}_{/X}\arr\one{C}_{/Y}$ has a right adjoint $f^*$.
+		\item %
+			A morphism $f\colon X\arr Y$ in $\one{C}$ is \emph{exponentiable} if $f$
+			is carrable and $f^*\colon\one{C}_{/Y}\arr\one{C}_{/X}$ has a right adjoint $\Pi_f$.
+		\qedhere %
+	\end{itemize}
+\end{definition}
+\begin{definition}
+	A \emph{\ac{pRMC}} is a pair $(\one{R},\rep)$
+	such that $\one{R}$ is a category
+	and $\rep$ is a class of morphisms in $\one{R}$ satisfying the followings.
+	\begin{itemize}
+		\item %
+			$\rep$ contains all identities and is closed under composition.
+		\item %
+			All morphisms in $\rep$ are exponentiable.
+		\item %
+			$\rep$ is stable under pullback.
+		\qedhere %
+	\end{itemize}
+\end{definition}
+\begin{definition}
+	Let $\one{R}=(\one{R},\rep)$ be \iac{pRMC}.
+	For any object $X,Y\in\one{R}$,
+	define a category $\Polybi(\one{R})(X,Y)$ as follows.
+\end{definition}
 
 \bibliographystyle{halpha-abbrv}
 \bibliography{bibliography}
