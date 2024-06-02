@@ -237,7 +237,7 @@ By \emph{double categories}, we mean psuedo ones.
 	$\dbl{D}$ is an \emph{opcompany} if $\dbl{D}^\hop$ is a company.
 	We say $\dbl{D}$ is an \emph{equipment} if $\dbl{D}$ and $\dbl{D}^\hop$ are companies.
 \end{definition}
-\begin{definition}
+\begin{definition}[\cite{Par24}]
 	\comment{(It is defined for arbitrary bvdc whose underlying sdc is a opcompany.)}
 	Let $\dbl{D}$ be an opcompany.
 	Define another double category $\Ret(\dbl{D})$ as follows.
@@ -339,8 +339,6 @@ By \emph{double categories}, we mean psuedo ones.
 			$\rep$ contains all identities and is closed under composition.
 		\item %
 			All morphisms in $\rep$ are exponentiable.
-		\item %
-			$\rep$ is stable under pullback.
 		\qedhere %
 	\end{itemize}
 \end{definition}
@@ -348,6 +346,26 @@ By \emph{double categories}, we mean psuedo ones.
 	Let $\one{R}=(\one{R},\rep)$ be \iac{pRMC}.
 	For any object $X,Y\in\one{R}$,
 	define a category $\Polybi(\one{R})(X,Y)$ as follows.
+	\begin{itemize}
+		\item %
+			An object is a diagram in $\one{R}$
+			of the following form
+			\[
+				\begin{tikzcd}
+					X
+					&
+					A
+					\ar[l,"f"']
+					\ar[r,"g"]
+					&
+					B
+					\ar[r,"h"]
+					&
+					Y
+				\end{tikzcd}
+			\]
+			such that $f$ is carrable and $g$ is exponentiable.
+	\end{itemize}
 \end{definition}
 
 \bibliographystyle{halpha-abbrv}
