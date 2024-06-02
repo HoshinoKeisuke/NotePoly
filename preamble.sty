@@ -21,12 +21,13 @@ array,%
 pict2e,
 listings, % for listings
 }
+\RequirePackage{comment}
 \RequirePackage{acro}
 %\RequirePackage[nolist,smaller]{acronym}
 \RequirePackage[a4paper, margin=2cm]{%
 geometry%
 }
-\RequirePackage[colorlinks,pagebackref]{%
+\RequirePackage[colorlinks]{%
 hyperref,%
 }
 \RequirePackage[nameinlink]{%
@@ -42,6 +43,16 @@ inputenc,%
 fit,%
 decorations.markings,% to define the key vslash
 }
+\RequirePackage[%
+    backend=biber,%
+    style=alphabetic,%
+    sorting=nyt,%
+    giveninits=true,%first name„Çíinitial„ÅßÁúÅÁï•
+    backref=true,%
+    isbn=false,%
+    url=true,%
+]{biblatex}
+\addbibresource{bibliography.bib}
 
 
 % yo!
@@ -170,13 +181,7 @@ decorations.markings,% to define the key vslash
 
 
 %comments
-\newcommand*{\commentcolorname}{Magenta}
-\newcommand*{\comment}[1]{%
-    \textcolor{\commentcolorname}{#1}%
-}
-\newcommand*{\commentcolor}{%
-    \color{\commentcolorname}%
-}
+\newcommand*{\inred}[1]{{\color{Magenta} #1}}
 
 %define colimit
 \newcommand*{\colim}{\operatorname*{colim}}
